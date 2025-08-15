@@ -1,12 +1,14 @@
 ﻿using Soenneker.Dtos.Filters.Base;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using Soenneker.Attributes.PublicOpenApiObject;
 
 namespace Soenneker.Dtos.Filters.Range;
 
 /// <summary>
 /// A generic object for handling range filtering during querying
 /// </summary>
+[PublicOpenApiObject]
 public sealed class RangeFilter : FilterBase
 {
     [JsonPropertyName("greaterThan")]
