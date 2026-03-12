@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Soenneker.Dtos.Filters.Range.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Dtos.Filters.Range\Soenneker.Dtos.Filters.Range.csproj" />
     </ItemGroup>
 
     <ItemGroup>
