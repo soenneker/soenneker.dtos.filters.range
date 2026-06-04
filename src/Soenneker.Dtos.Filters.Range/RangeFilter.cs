@@ -11,18 +11,30 @@ namespace Soenneker.Dtos.Filters.Range;
 [PublicOpenApiObject]
 public sealed class RangeFilter : FilterBase
 {
+    /// <summary>
+    /// The exclusive lower bound for the field value.
+    /// </summary>
     [JsonPropertyName("greaterThan")]
     [JsonProperty("greaterThan")]
     public object? GreaterThan { get; set; }
 
+    /// <summary>
+    /// The inclusive lower bound for the field value.
+    /// </summary>
     [JsonPropertyName("greaterThanOrEqual")]
     [JsonProperty("greaterThanOrEqual")]
     public object? GreaterThanOrEqual { get; set; }
 
+    /// <summary>
+    /// The exclusive upper bound for the field value.
+    /// </summary>
     [JsonPropertyName("lessThan")]
     [JsonProperty("lessThan")]
     public object? LessThan { get; set; }
 
+    /// <summary>
+    /// The inclusive upper bound for the field value.
+    /// </summary>
     [JsonPropertyName("lessThanOrEqual")]
     [JsonProperty("lessThanOrEqual")]
     public object? LessThanOrEqual { get; set; }
