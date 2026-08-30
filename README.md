@@ -5,23 +5,45 @@
 
 # Soenneker.Dtos.Filters.Range
 
-Selects records by applying inclusive or exclusive lower and upper bounds to a named comparable field.
+Represents inclusive or exclusive bounds for a named comparable field.
 
-## Install
+## Installation
 
 ```bash
 dotnet add package Soenneker.Dtos.Filters.Range
 ```
 
-## What you get
+## Numeric range
 
-- `RangeFilter` — Selects records by applying inclusive or exclusive lower and upper bounds to a named comparable field.
+```csharp
+using Soenneker.Dtos.Filters.Range;
 
-## API at a glance
+var filter = new RangeFilter
+{
+    Field = "price",
+    GreaterThanOrEqual = 10.00m,
+    LessThan = 50.00m
+};
+```
 
-| API | What it does | Result / important behavior |
-| --- | --- | --- |
-| `RangeFilter.GreaterThan` | Exclusive lower bound; matching field values must be greater than this value. | Exclusive lower bound; matching field values must be greater than this value. |
-| `RangeFilter.GreaterThanOrEqual` | Inclusive lower bound; matching field values must be greater than or equal to this value. | Inclusive lower bound; matching field values must be greater than or equal to this value. |
-| `RangeFilter.LessThan` | Exclusive upper bound; matching field values must be less than this value. | Exclusive upper bound; matching field values must be less than this value. |
-| `RangeFilter.LessThanOrEqual` | Inclusive upper bound; matching field values must be less than or equal to this value. | Inclusive upper bound; matching field values must be less than or equal to this value. |
+## Timestamp range
+
+```csharp
+var filter = new RangeFilter
+{
+    Field = "createdAt",
+    GreaterThanOrEqual = new DateTimeOffset(2026, 1, 1, 0, 0, 0, TimeSpan.Zero),
+    LessThan = new DateTimeOffset(2027, 1, 1, 0, 0, 0, TimeSpan.Zero)
+};
+```
+
+Both System.Text.Json and Newtonsoft.Json use `field`, `greaterThan`, `greaterThanOrEqual`, `lessThan`, and `lessThanOrEqual` as wire names.
+
+Normally choose at most one lower bound and one upper bound:
+
+- `GreaterThan` is exclusive; `GreaterThanOrEqual` is inclusive.
+- `LessThan` is exclusive; `LessThanOrEqual` is inclusive.
+
+The DTO does not reject conflicting lower or upper operators, reversed ranges, incomparable types, null-only filters, or unsupported fields. `object?` bounds also deserialize to serializer-specific untyped representations such as `JsonElement` or `JValue`.
+
+At the server boundary, allow-list `Field`, choose the expected CLR type from server-owned metadata, convert each supplied bound, reject contradictory combinations, and parameterize the resulting query. Never concatenate field names or bound values into a query expression.
