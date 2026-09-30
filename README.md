@@ -37,7 +37,7 @@ var filter = new RangeFilter
 };
 ```
 
-Both System.Text.Json and Newtonsoft.Json use `field`, `greaterThan`, `greaterThanOrEqual`, `lessThan`, and `lessThanOrEqual` as wire names.
+System.Text.Json uses `field`, `greaterThan`, `greaterThanOrEqual`, `lessThan`, and `lessThanOrEqual` as wire names.
 
 Normally choose at most one lower bound and one upper bound:
 
