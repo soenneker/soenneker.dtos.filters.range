@@ -45,6 +45,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Soenneker.Dtos.Filters.Base" Version="11.0.69" />
+        <PackageReference Include="Soenneker.Dtos.Filters.Base" Version="11.0.70" />
     </ItemGroup>
 </Project>
